@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "description": "Starter guild contracts. These values are mirrored by the script runtime and should be kept in sync.",
+  "quests": [
+    {
+      "id": "slime_survey",
+      "name": "Slime Survey",
+      "description": "Defeat 5 slimes.",
+      "target_entity": "minecraft:slime",
+      "target_count": 5,
+      "reward": {
+        "gp": 35,
+        "coins": 50
+      }
+    },
+    {
+      "id": "zombie_patrol",
+      "name": "Night Patrol",
+      "description": "Defeat 5 zombies.",
+      "target_entity": "minecraft:zombie",
+      "target_count": 5,
+      "reward": {
+        "gp": 45,
+        "coins": 65
+      }
+    },
+    {
+      "id": "skeleton_watch",
+      "name": "Ranger's Watch",
+      "description": "Defeat 3 skeletons.",
+      "target_entity": "minecraft:skeleton",
+      "target_count": 3,
+      "reward": {
+        "gp": 55,
+        "coins": 80
+      }
+    }
+  ]
+}
