@@ -1,0 +1,58 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "The Forgotten World - Behavior Pack",
+    "description": "RPG progression, guild contracts and player data for The Forgotten World.",
+    "uuid": "2b4f8a16-7c31-4e9d-a5b2-6f8c1d3e9a40",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      21,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "a7c2e915-3d64-4b80-9f21-6e5a8c0d2b73",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "d9e4a137-5b86-4c20-a3f7-8e1d6b9c2f50",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "5e1a9c42-8d73-4f06-b2a5-7c3e9d1f6048",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.10.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.2.0"
+    }
+  ]
+}
