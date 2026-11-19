@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "progression_type": "guild_points",
+  "ranks": [
+    {
+      "id": "F",
+      "name": "F-Rank",
+      "minimum_gp": 0
+    },
+    {
+      "id": "E",
+      "name": "E-Rank",
+      "minimum_gp": 100
+    },
+    {
+      "id": "D",
+      "name": "D-Rank",
+      "minimum_gp": 300
+    },
+    {
+      "id": "C",
+      "name": "C-Rank",
+      "minimum_gp": 700
+    },
+    {
+      "id": "B",
+      "name": "B-Rank",
+      "minimum_gp": 1500
+    },
+    {
+      "id": "A",
+      "name": "A-Rank",
+      "minimum_gp": 3000
+    },
+    {
+      "id": "S",
+      "name": "S-Rank",
+      "minimum_gp": 6000
+    },
+    {
+      "id": "SS",
+      "name": "SS-Rank",
+      "minimum_gp": 12000
+    }
+  ]
+}
