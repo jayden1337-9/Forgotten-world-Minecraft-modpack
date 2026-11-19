@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "rarities": [
+    {
+      "id": "common",
+      "display_name": "Common",
+      "weight": 1,
+      "color": "white"
+    },
+    {
+      "id": "uncommon",
+      "display_name": "Uncommon",
+      "weight": 2,
+      "color": "green"
+    },
+    {
+      "id": "rare",
+      "display_name": "Rare",
+      "weight": 3,
+      "color": "blue"
+    },
+    {
+      "id": "epic",
+      "display_name": "Epic",
+      "weight": 4,
+      "color": "dark_purple"
+    },
+    {
+      "id": "legendary",
+      "display_name": "Legendary",
+      "weight": 5,
+      "color": "gold"
+    },
+    {
+      "id": "mythical",
+      "display_name": "Mythical",
+      "weight": 6,
+      "color": "light_purple"
+    },
+    {
+      "id": "divine",
+      "display_name": "Divine",
+      "weight": 7,
+      "color": "aqua"
+    }
+  ]
+}
