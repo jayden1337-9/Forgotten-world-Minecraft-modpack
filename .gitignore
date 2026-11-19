@@ -1,0 +1,10 @@
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary exports and backups
+*.tmp
+*.bak
+*.zip
