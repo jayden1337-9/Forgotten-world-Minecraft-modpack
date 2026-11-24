@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "forgotten:crystal_golem",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/abyss_watcher"
+      },
+      "geometry": {
+        "default": "geometry.forgotten.crystal_golem"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}

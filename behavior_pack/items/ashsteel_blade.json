@@ -1,0 +1,27 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:item": {
+    "description": {
+      "identifier": "forgotten:ashsteel_blade",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "Ashsteel Blade"
+      },
+      "minecraft:icon": "ashsteel_blade",
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:damage": 11,
+      "minecraft:durability": {
+        "max_durability": 520
+      },
+      "minecraft:enchantable": {
+        "value": 18,
+        "slot": "sword"
+      }
+    }
+  }
+}
