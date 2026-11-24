@@ -1,0 +1,11 @@
+{
+  "format_version": [
+    1,
+    1,
+    0
+  ],
+  "forgotten:abyss_crystal_ore": {
+    "textures": "abyss_crystal_ore",
+    "sound": "stone"
+  }
+}

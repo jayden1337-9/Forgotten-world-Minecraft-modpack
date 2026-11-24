@@ -3,10 +3,28 @@
   "minecraft:client_entity": {
     "description": {
       "identifier": "forgotten:abyss_watcher",
-      "materials": { "default": "entity_alphatest" },
-      "textures": { "default": "textures/entity/abyss_watcher" },
-      "geometry": { "default": "geometry.forgotten.abyss_watcher" },
-      "render_controllers": ["controller.render.default"]
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/abyss_watcher"
+      },
+      "geometry": {
+        "default": "geometry.forgotten.abyss_watcher"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ],
+      "animations": {
+        "idle": "animation.forgotten.abyss_watcher.idle",
+        "walk": "animation.forgotten.abyss_watcher.walk",
+        "movement": "controller.animation.forgotten.abyss_watcher"
+      },
+      "scripts": {
+        "animate": [
+          "movement"
+        ]
+      }
     }
   }
 }

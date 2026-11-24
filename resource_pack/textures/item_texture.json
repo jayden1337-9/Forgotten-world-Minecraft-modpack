@@ -1,0 +1,9 @@
+{
+  "resource_pack_name": "forgotten_world",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "abyss_scepter": {
+      "textures": "textures/items/abyss_scepter"
+    }
+  }
+}

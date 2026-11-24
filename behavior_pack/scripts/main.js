@@ -239,8 +239,11 @@ world.beforeEvents.chatSend.subscribe((event) => {
   system.run(() => {
     try {
       const abyss = world.getDimension(ABYSS_DIMENSION);
-      buildAbyssArrival(abyss);
-      player.teleport(ABYSS_SPAWN, { dimension: abyss });
+      player.teleport({ x: 0.5, y: 68, z: 0.5 }, { dimension: abyss });
+      system.runTimeout(() => {
+        try { buildAbyssArrival(abyss); }
+        catch (buildError) { console.warn("[ForgottenWorld] Abyss build error: " + buildError); }
+      }, 2);
       player.sendMessage("§5[The Forgotten World] §dThe Forgotten Abyss has opened.");
     } catch (error) {
       player.sendMessage("§c[The Forgotten World] The portal could not open. Check pack activation and custom-dimension support.");
