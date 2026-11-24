@@ -1,8 +1,8 @@
 {
   "format_version": "1.10.0",
-  "minecraft:client_entity": {
+  "minecraft:attachable": {
     "description": {
-      "identifier": "forgotten:crystal_golem",
+      "identifier": "forgotten:abyss_helmet",
       "materials": {
         "default": "entity_alphatest"
       },
@@ -10,7 +10,7 @@
         "default": "textures/entity/abyss_watcher"
       },
       "geometry": {
-        "default": "geometry.forgotten.crystal_golem"
+        "default": "geometry.forgotten.abyss_helmet"
       },
       "render_controllers": [
         "controller.render.default"

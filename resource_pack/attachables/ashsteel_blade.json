@@ -1,16 +1,16 @@
 {
   "format_version": "1.10.0",
-  "minecraft:client_entity": {
+  "minecraft:attachable": {
     "description": {
-      "identifier": "forgotten:guild_guide",
+      "identifier": "forgotten:ashsteel_blade",
       "materials": {
         "default": "entity_alphatest"
       },
       "textures": {
-        "default": "textures/entity/abyss_watcher"
+        "default": "textures/items/abyss_scepter"
       },
       "geometry": {
-        "default": "geometry.forgotten.guild_guide"
+        "default": "geometry.forgotten.ashsteel_blade"
       },
       "render_controllers": [
         "controller.render.default"

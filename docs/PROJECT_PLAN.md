@@ -1,1 +1,21 @@
-# The Forgotten World — project status\n\n## Implemented content\n- Persistent player profiles, F–SS guild ranks, Guild Card and contract rewards.\n- Six hunt contracts, including the three original vanilla contracts and three custom-mob contracts.\n- Secret phrase `LET ME IN MOMMY` opens the Forgotten Abyss.\n- Three generated regions: Shattered Landing, Ashen Reach and Crystal Deep.\n- Interactive Guild Guide region travel, contracts and Guild Card.\n- Abyss Watcher, Ashen Wolf, Crystal Golem, Void Knight boss and Guild Guide entities with custom geometry.\n- Abyss Scepter, Ashsteel Blade, four armor items, two additional custom blocks and shaped recipes.\n- GitHub Actions packages the add-on automatically.\n\n## Next quality pass\n- Validate retail Bedrock behavior and tune asset formats from in-game logs.\n- Give every creature and equipment piece a distinct hand-painted texture and bespoke animation.\n- Add deeper quest chains, loot progression, sound, structures and multiplayer balancing.\n
+# The Forgotten World — project roadmap
+
+## Implemented foundation
+- Persistent profiles, GP, coins and ranks F through SS.
+- Guild Card and contract-board forms.
+- Three starter mob-hunt contracts.
+- Custom void dimension `forgotten:forgotten_abyss`.
+- Chat phrase `LET ME IN MOMMY` opens the dimension.
+- First custom geometry, texture and animation-backed entity: Abyss Watcher.
+- GitHub Actions validation and .mcaddon packaging.
+
+## Content roadmap
+1. Expand the creature roster with original geometry, textures, animation controllers, AI and loot.
+2. Add custom blocks, ores, crafting materials, weapons, armor and item icons.
+3. Build settlements, castles, ruins, caves, dungeons and boss arenas.
+4. Add NPC dialogue, merchants, quest chains, reputation and progression.
+5. Expand the Abyss into multiple regions and add further dimensions.
+6. Add sound design, localization, UI polish and accessibility.
+7. Test on current retail Bedrock clients and multiplayer worlds.
+
+Use a disposable world for tests and record the exact retail Minecraft version.

@@ -1,8 +1,8 @@
 {
   "format_version": "1.10.0",
-  "minecraft:client_entity": {
+  "minecraft:attachable": {
     "description": {
-      "identifier": "forgotten:void_knight",
+      "identifier": "forgotten:abyss_chestplate",
       "materials": {
         "default": "entity_alphatest"
       },
@@ -10,7 +10,7 @@
         "default": "textures/entity/abyss_watcher"
       },
       "geometry": {
-        "default": "geometry.forgotten.void_knight"
+        "default": "geometry.forgotten.abyss_chestplate"
       },
       "render_controllers": [
         "controller.render.default"

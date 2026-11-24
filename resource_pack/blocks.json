@@ -7,13 +7,5 @@
   "forgotten:abyss_crystal_ore": {
     "textures": "abyss_crystal_ore",
     "sound": "stone"
-  },
-  "forgotten:moonstone_bricks": {
-    "textures": "moonstone_bricks",
-    "sound": "stone"
-  },
-  "forgotten:abyss_lamp": {
-    "textures": "abyss_lamp",
-    "sound": "glass"
   }
 }

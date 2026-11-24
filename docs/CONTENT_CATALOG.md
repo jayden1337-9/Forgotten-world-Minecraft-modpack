@@ -1,1 +1,8 @@
-# Content catalog\n\n## Creatures\n- Abyss Watcher guardian.\n- Ashen Wolf: fast melee hunter with leather/coal loot.\n- Crystal Golem: heavy guardian with amethyst/diamond loot.\n- Void Knight: boss with echo shard and Abyss Scepter loot.\n- Guild Guide: interactive NPC and region wayfinder.\n\n## Equipment and blocks\n- Abyss Scepter and Ashsteel Blade.\n- Abyss Helm, Chestplate, Leggings and Boots.\n- Abyss Crystal Ore, Moonstone Bricks and Abyss Lamp.\n- Shaped crafting recipes for the weapons and armor.\n\n## Regions\n- Shattered Landing, Ashen Reach and Crystal Deep.\n- Floating islands, pillars, dungeon corridors, chambers and boss dais.\n
+# First custom content set
+
+- Abyss Watcher: original geometry, custom texture and idle/walk animation assets.
+- Abyss Scepter: custom item identifier and 9 base damage.
+- Abyss Crystal Ore: custom full-block geometry and amethyst-shard loot.
+- Forgotten Abyss: void dimension with generated floating landing island, shrine, light pillars and guardian.
+
+This is the first content slice. The larger creature, weapon, armor, structure, biome and quest catalog remains in development.

@@ -1,8 +1,8 @@
 {
   "format_version": "1.10.0",
-  "minecraft:client_entity": {
+  "minecraft:attachable": {
     "description": {
-      "identifier": "forgotten:ash_wolf",
+      "identifier": "forgotten:abyss_leggings",
       "materials": {
         "default": "entity_alphatest"
       },
@@ -10,7 +10,7 @@
         "default": "textures/entity/abyss_watcher"
       },
       "geometry": {
-        "default": "geometry.forgotten.ash_wolf"
+        "default": "geometry.forgotten.abyss_leggings"
       },
       "render_controllers": [
         "controller.render.default"

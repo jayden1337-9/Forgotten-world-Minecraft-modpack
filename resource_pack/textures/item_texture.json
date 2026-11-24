@@ -4,21 +4,6 @@
   "texture_data": {
     "abyss_scepter": {
       "textures": "textures/items/abyss_scepter"
-    },
-    "ashsteel_blade": {
-      "textures": "textures/items/abyss_scepter"
-    },
-    "abyss_helmet": {
-      "textures": "textures/items/abyss_scepter"
-    },
-    "abyss_chestplate": {
-      "textures": "textures/items/abyss_scepter"
-    },
-    "abyss_leggings": {
-      "textures": "textures/items/abyss_scepter"
-    },
-    "abyss_boots": {
-      "textures": "textures/items/abyss_scepter"
     }
   }
 }

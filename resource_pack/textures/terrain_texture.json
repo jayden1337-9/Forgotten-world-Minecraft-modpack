@@ -6,12 +6,6 @@
   "texture_data": {
     "abyss_crystal_ore": {
       "textures": "textures/blocks/abyss_crystal_ore"
-    },
-    "moonstone_bricks": {
-      "textures": "textures/blocks/abyss_crystal_ore"
-    },
-    "abyss_lamp": {
-      "textures": "textures/blocks/abyss_crystal_ore"
     }
   }
 }
