@@ -1,0 +1,24 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "forgotten:abyss_boots"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "A A",
+      "A A"
+    ],
+    "key": {
+      "A": {
+        "item": "minecraft:amethyst_shard"
+      }
+    },
+    "result": {
+      "item": "forgotten:abyss_boots",
+      "count": 1
+    }
+  }
+}

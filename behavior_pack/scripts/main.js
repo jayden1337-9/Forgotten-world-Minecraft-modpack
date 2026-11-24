@@ -16,7 +16,10 @@ const RANKS = [
 const QUESTS = [
   { id: "slime_survey", name: "Slime Survey", description: "Defeat 5 slimes.", entity: "minecraft:slime", goal: 5, gp: 35, coins: 50 },
   { id: "zombie_patrol", name: "Night Patrol", description: "Defeat 5 zombies.", entity: "minecraft:zombie", goal: 5, gp: 45, coins: 65 },
-  { id: "skeleton_watch", name: "Ranger's Watch", description: "Defeat 3 skeletons.", entity: "minecraft:skeleton", goal: 3, gp: 55, coins: 80 }
+  { id: "skeleton_watch", name: "Ranger's Watch", description: "Defeat 3 skeletons.", entity: "minecraft:skeleton", goal: 3, gp: 55, coins: 80 },
+  { id: "ashen_wolves", name: "Ashen Hunt", description: "Defeat 4 Ashen Wolves.", entity: "forgotten:ash_wolf", goal: 4, gp: 110, coins: 140 },
+  { id: "crystal_guard", name: "Crystal Breaker", description: "Defeat 3 Crystal Golems.", entity: "forgotten:crystal_golem", goal: 3, gp: 180, coins: 240 },
+  { id: "knight_fall", name: "Knightfall", description: "Defeat a Void Knight.", entity: "forgotten:void_knight", goal: 1, gp: 350, coins: 500 }
 ];
 
 function freshProfile() {
@@ -194,60 +197,89 @@ system.afterEvents.scriptEventReceive.subscribe(event => {
 console.warn("[ForgottenWorld] RPG systems loaded.");
 
 
-// Secret dimension portal: type the exact phrase in normal chat.
+// Expanded Abyss: three islands, two dungeon regions and an interactive wayfinder.
 const ABYSS_PHRASE = "LET ME IN MOMMY";
 const ABYSS_DIMENSION = "forgotten:forgotten_abyss";
-const ABYSS_SPAWN = { x: 0.5, y: 66, z: 0.5 };
-const abyssBuilt = new Set();
-
-function buildAbyssArrival(dimension) {
-  if (abyssBuilt.has(dimension.id)) return;
-  const put = (x, y, z, type) => {
-    const block = dimension.getBlock({ x, y, z });
-    if (block) block.setType(type);
-  };
-  for (let x = -12; x <= 12; x++) {
-    for (let z = -12; z <= 12; z++) {
-      const d = x*x + z*z;
-      if (d <= 144) put(x, 63, z, "minecraft:deepslate_bricks");
-      if (d <= 100) put(x, 62, z, "minecraft:stone");
-      if (d <= 64) put(x, 61, z, "minecraft:deepslate");
-      if (Math.abs(x) <= 7 && Math.abs(z) <= 7) put(x, 64, z, "minecraft:polished_blackstone_bricks");
-    }
-  }
-  for (let x = -7; x <= 7; x++) for (let z = -7; z <= 7; z++) {
-    if (Math.abs(x) === 7 || Math.abs(z) === 7) put(x, 64, z, "minecraft:crying_obsidian");
-  }
-  for (const [x,z] of [[-6,-6],[6,-6],[-6,6],[6,6]]) {
-    for (let y = 65; y <= 68; y++) put(x,y,z,"minecraft:polished_blackstone_bricks");
-    put(x,69,z,"minecraft:sea_lantern");
-  }
-  for (let y = 65; y <= 68; y++) {
-    put(-2,y,-10,"minecraft:polished_blackstone_bricks");
-    put(2,y,-10,"minecraft:polished_blackstone_bricks");
-  }
-  put(0,65,-10,"minecraft:crying_obsidian");
-  put(0,66,-10,"minecraft:sea_lantern");
-  try { dimension.spawnEntity("forgotten:abyss_watcher", {x:0.5,y:66,z:-5.5}); } catch (e) { console.warn("[ForgottenWorld] Guardian spawn: "+e); }
-  abyssBuilt.add(dimension.id);
+const ABYSS_REGIONS = [
+ {name:"The Shattered Landing",id:"hub",x:0,z:0,floor:"minecraft:deepslate_bricks",trim:"minecraft:polished_blackstone_bricks"},
+ {name:"Ashen Reach",id:"ashen",x:144,z:0,floor:"minecraft:blackstone",trim:"minecraft:polished_blackstone_bricks"},
+ {name:"Crystal Deep",id:"crystal",x:-144,z:0,floor:"minecraft:deepslate",trim:"minecraft:amethyst_block"}
+];
+const builtRegions = new Set();
+function abyssSet(dim,x,y,z,type){try{const b=dim.getBlock({x,y,z});if(b)b.setType(type);}catch(e){}}
+function abyssEntity(dim,type,loc,r=12){try{if(dim.getEntities({type,location:loc,maxDistance:r}).length===0)dim.spawnEntity(type,loc);}catch(e){console.warn("[ForgottenWorld] spawn "+type+": "+e);}}
+function buildAbyssRegion(dim,r){
+ if(builtRegions.has(r.id))return;
+ const {x:cx,z:cz}=r;
+ // Floating island and raised plaza.
+ for(let dx=-16;dx<=16;dx++)for(let dz=-16;dz<=16;dz++){
+  const d=dx*dx+dz*dz;
+  if(d<=256)abyssSet(dim,cx+dx,63,cz+dz,r.floor);
+  if(d<=196)abyssSet(dim,cx+dx,62,cz+dz,"minecraft:stone");
+  if(d<=100)abyssSet(dim,cx+dx,61,cz+dz,"minecraft:deepslate");
+  if(Math.abs(dx)<=5&&Math.abs(dz)<=5)abyssSet(dim,cx+dx,64,cz+dz,r.trim);
+ }
+ for(const [dx,dz] of [[-9,-9],[9,-9],[-9,9],[9,9]]){
+  for(let y=65;y<=69;y++)abyssSet(dim,cx+dx,y,cz+dz,r.trim);
+  abyssSet(dim,cx+dx,70,cz+dz,"minecraft:sea_lantern");
+ }
+ // Dungeon footprint, entrance arch, chambers and boss dais.
+ const dx0=cx,dz0=cz-25;
+ for(let dx=-7;dx<=7;dx++)for(let dz=-9;dz<=9;dz++){
+  abyssSet(dim,dx0+dx,59,dz0+dz,r.floor);
+  if(Math.abs(dx)===7||Math.abs(dz)===9)for(let y=60;y<=64;y++)abyssSet(dim,dx0+dx,y,dz0+dz,r.trim);
+ }
+ for(const [dx,dz] of [[-5,-6],[5,-6],[-5,0],[5,0],[-5,6],[5,6]]){
+  for(let y=60;y<=64;y++)abyssSet(dim,dx0+dx,y,dz0+dz,r.trim);
+  abyssSet(dim,dx0+dx,65,dz0+dz,"minecraft:sea_lantern");
+ }
+ for(let dx=-2;dx<=2;dx++)for(let dz=-2;dz<=2;dz++)abyssSet(dim,dx0+dx,60,dz0+dz,"minecraft:chiseled_deepslate");
+ for(let y=60;y<=63;y++)abyssSet(dim,cx,y,dz0,"minecraft:crying_obsidian");
+ if(r.id==="hub"){
+  abyssEntity(dim,"forgotten:guild_guide",{x:5.5,y:65,z:2.5},16);
+  abyssEntity(dim,"forgotten:abyss_watcher",{x:-5.5,y:65,z:-5.5},18);
+ }else if(r.id==="ashen"){
+  abyssEntity(dim,"forgotten:ash_wolf",{x:cx+5.5,y:65,z:cz+4.5},16);
+  abyssEntity(dim,"forgotten:ash_wolf",{x:cx-5.5,y:65,z:cz-4.5},16);
+  abyssEntity(dim,"forgotten:void_knight",{x:cx,y:60,z:dz0},18);
+ }else{
+  abyssEntity(dim,"forgotten:crystal_golem",{x:cx+5.5,y:65,z:cz+4.5},16);
+  abyssEntity(dim,"forgotten:crystal_golem",{x:cx-5.5,y:65,z:cz-4.5},16);
+  abyssEntity(dim,"forgotten:void_knight",{x:cx,y:60,z:dz0},18);
+ }
+ builtRegions.add(r.id);
 }
-
-world.beforeEvents.chatSend.subscribe((event) => {
-  if (event.message.trim() !== ABYSS_PHRASE) return;
-  event.cancel = true;
-  const player = event.sender;
-  system.run(() => {
-    try {
-      const abyss = world.getDimension(ABYSS_DIMENSION);
-      player.teleport({ x: 0.5, y: 68, z: 0.5 }, { dimension: abyss });
-      system.runTimeout(() => {
-        try { buildAbyssArrival(abyss); }
-        catch (buildError) { console.warn("[ForgottenWorld] Abyss build error: " + buildError); }
-      }, 2);
-      player.sendMessage("§5[The Forgotten World] §dThe Forgotten Abyss has opened.");
-    } catch (error) {
-      player.sendMessage("§c[The Forgotten World] The portal could not open. Check pack activation and custom-dimension support.");
-      console.warn("[ForgottenWorld] Abyss portal error: " + error);
-    }
-  });
+async function openAbyssWayfinder(player){
+ const result=await new ActionFormData().title("Abyss Wayfinder")
+ .body("Choose a region. The dungeons are dangerous; take contracts before leaving.")
+ .button("The Shattered Landing\nGuild hub")
+ .button("Ashen Reach\nAshen Wolves and dungeon")
+ .button("Crystal Deep\nCrystal Golems and dungeon")
+ .button("Guild Contracts").button("Guild Card").show(player);
+ if(result.canceled)return;
+ if(result.selection===3)return showContracts(player);
+ if(result.selection===4)return showCard(player);
+ const r=ABYSS_REGIONS[result.selection];if(!r)return;
+ const dim=world.getDimension(ABYSS_DIMENSION);buildAbyssRegion(dim,r);
+ player.teleport({x:r.x+0.5,y:66,z:r.z+0.5},{dimension:dim});
+ player.sendMessage("§5[Wayfinder] §dRegion discovered: §f"+r.name);
+}
+world.afterEvents.playerInteractWithEntity.subscribe(({player,target})=>{
+ if(target.typeId==="forgotten:guild_guide")openAbyssWayfinder(player);
+});
+world.beforeEvents.chatSend.subscribe(event=>{
+ if(event.message.trim()!==ABYSS_PHRASE)return;
+ event.cancel=true;
+ const player=event.sender;
+ system.run(()=>{
+  try{
+   const dim=world.getDimension(ABYSS_DIMENSION);
+   buildAbyssRegion(dim,ABYSS_REGIONS[0]);
+   player.teleport({x:0.5,y:66,z:0.5},{dimension:dim});
+   player.sendMessage("§5[The Forgotten World] §dThe Forgotten Abyss has opened. Find the Guild Guide.");
+  }catch(error){
+   player.sendMessage("§c[The Forgotten World] The portal could not open. Check pack activation and custom-dimension support.");
+   console.warn("[ForgottenWorld] Abyss portal error: "+error);
+  }
+ });
 });
