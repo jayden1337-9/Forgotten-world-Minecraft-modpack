@@ -7,7 +7,7 @@
         "default": "entity_alphatest"
       },
       "textures": {
-        "default": "textures/entity/abyss_watcher"
+        "default": "textures/entity/void_knight"
       },
       "geometry": {
         "default": "geometry.forgotten.abyss_chestplate"

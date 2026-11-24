@@ -6,19 +6,19 @@
       "textures": "textures/items/abyss_scepter"
     },
     "ashsteel_blade": {
-      "textures": "textures/items/abyss_scepter"
+      "textures": "textures/items/forgotten_equipment"
     },
     "abyss_helmet": {
-      "textures": "textures/items/abyss_scepter"
+      "textures": "textures/items/forgotten_equipment"
     },
     "abyss_chestplate": {
-      "textures": "textures/items/abyss_scepter"
+      "textures": "textures/items/forgotten_equipment"
     },
     "abyss_leggings": {
-      "textures": "textures/items/abyss_scepter"
+      "textures": "textures/items/forgotten_equipment"
     },
     "abyss_boots": {
-      "textures": "textures/items/abyss_scepter"
+      "textures": "textures/items/forgotten_equipment"
     }
   }
 }

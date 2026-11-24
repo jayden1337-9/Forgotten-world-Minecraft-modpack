@@ -7,7 +7,7 @@
         "default": "entity_alphatest"
       },
       "textures": {
-        "default": "textures/entity/abyss_watcher"
+        "default": "textures/entity/ash_wolf"
       },
       "geometry": {
         "default": "geometry.forgotten.ash_wolf"

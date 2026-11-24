@@ -7,7 +7,7 @@
         "default": "entity_alphatest"
       },
       "textures": {
-        "default": "textures/entity/abyss_watcher"
+        "default": "textures/entity/guild_guide"
       },
       "geometry": {
         "default": "geometry.forgotten.guild_guide"
