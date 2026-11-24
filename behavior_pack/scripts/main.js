@@ -192,3 +192,59 @@ system.afterEvents.scriptEventReceive.subscribe(event => {
 });
 
 console.warn("[ForgottenWorld] RPG systems loaded.");
+
+
+// Secret dimension portal: type the exact phrase in normal chat.
+const ABYSS_PHRASE = "LET ME IN MOMMY";
+const ABYSS_DIMENSION = "forgotten:forgotten_abyss";
+const ABYSS_SPAWN = { x: 0.5, y: 66, z: 0.5 };
+const abyssBuilt = new Set();
+
+function buildAbyssArrival(dimension) {
+  if (abyssBuilt.has(dimension.id)) return;
+  const put = (x, y, z, type) => {
+    const block = dimension.getBlock({ x, y, z });
+    if (block) block.setType(type);
+  };
+  for (let x = -12; x <= 12; x++) {
+    for (let z = -12; z <= 12; z++) {
+      const d = x*x + z*z;
+      if (d <= 144) put(x, 63, z, "minecraft:deepslate_bricks");
+      if (d <= 100) put(x, 62, z, "minecraft:stone");
+      if (d <= 64) put(x, 61, z, "minecraft:deepslate");
+      if (Math.abs(x) <= 7 && Math.abs(z) <= 7) put(x, 64, z, "minecraft:polished_blackstone_bricks");
+    }
+  }
+  for (let x = -7; x <= 7; x++) for (let z = -7; z <= 7; z++) {
+    if (Math.abs(x) === 7 || Math.abs(z) === 7) put(x, 64, z, "minecraft:crying_obsidian");
+  }
+  for (const [x,z] of [[-6,-6],[6,-6],[-6,6],[6,6]]) {
+    for (let y = 65; y <= 68; y++) put(x,y,z,"minecraft:polished_blackstone_bricks");
+    put(x,69,z,"minecraft:sea_lantern");
+  }
+  for (let y = 65; y <= 68; y++) {
+    put(-2,y,-10,"minecraft:polished_blackstone_bricks");
+    put(2,y,-10,"minecraft:polished_blackstone_bricks");
+  }
+  put(0,65,-10,"minecraft:crying_obsidian");
+  put(0,66,-10,"minecraft:sea_lantern");
+  try { dimension.spawnEntity("forgotten:abyss_watcher", {x:0.5,y:66,z:-5.5}); } catch (e) { console.warn("[ForgottenWorld] Guardian spawn: "+e); }
+  abyssBuilt.add(dimension.id);
+}
+
+world.beforeEvents.chatSend.subscribe((event) => {
+  if (event.message.trim() !== ABYSS_PHRASE) return;
+  event.cancel = true;
+  const player = event.sender;
+  system.run(() => {
+    try {
+      const abyss = world.getDimension(ABYSS_DIMENSION);
+      buildAbyssArrival(abyss);
+      player.teleport(ABYSS_SPAWN, { dimension: abyss });
+      player.sendMessage("§5[The Forgotten World] §dThe Forgotten Abyss has opened.");
+    } catch (error) {
+      player.sendMessage("§c[The Forgotten World] The portal could not open. Check pack activation and custom-dimension support.");
+      console.warn("[ForgottenWorld] Abyss portal error: " + error);
+    }
+  });
+});

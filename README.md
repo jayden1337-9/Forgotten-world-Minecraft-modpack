@@ -1,38 +1,30 @@
 # The Forgotten World
 
-A lightweight medieval-fantasy RPG add-on for Minecraft Bedrock Edition.
+A Minecraft Bedrock fantasy RPG add-on with guild progression, custom content and a secret dimension.
 
-## Packs
+## Included
+- Behavior Pack + Resource Pack
+- Persistent profiles, coins, guild points and ranks F through SS
+- Guild Card and three starter contracts
+- Custom void dimension `forgotten:forgotten_abyss`
+- Secret chat phrase: `LET ME IN MOMMY`
+- First custom modeled guardian: Abyss Watcher
+- GitHub Actions builds a downloadable `.mcaddon` on every push or manual run
 
-- `behavior_pack/` — RPG progression, contracts and persistent player profiles.
-- `resource_pack/` — resource pack manifest; custom art and audio are added in later milestones.
-- `config/` — guild ranks, item rarity tiers and starter contract definitions.
-- `docs/` — project plan and testing instructions.
+## Build
+Open the **Actions** tab and run **Build Bedrock Add-on**, or push a commit. Download the generated artifact from the workflow run. Push a version tag beginning with `v` to publish a GitHub Release.
 
-## Current gameplay
+## Install
+1. Download `ForgottenWorld.mcaddon` from Actions artifacts or Releases.
+2. Open it with Minecraft Bedrock.
+3. Create a new test world and activate both packs.
+4. Enable any experiments requested by Minecraft.
+5. Type `LET ME IN MOMMY` in chat to enter the Forgotten Abyss.
 
-- Persistent player profile: guild points, coins, contract history and active contract progress.
-- Eight guild ranks: F, E, D, C, B, A, S and SS.
-- Guild Card UI and contract board UI.
-- Three starter contracts tracking slime, zombie and skeleton defeats.
-- Seven rarity tiers defined in shared configuration: Common, Uncommon, Rare, Epic, Legendary, Mythical and Divine.
+## Existing guild commands
+- `/scriptevent fw:guild` — guild menu.
+- `/scriptevent fw:card` — Guild Card.
+- `/scriptevent fw:contracts` — contracts.
+- `/scriptevent fw:admin_gp <exactPlayerName> <amount>` — admin grant; sender needs `fw_admin` tag.
 
-## In-game commands
-
-These use Bedrock's `/scriptevent` command and require cheats/operator permissions in the world:
-
-- `/scriptevent fw:guild` — open the guild menu.
-- `/scriptevent fw:card` — open the Guild Card.
-- `/scriptevent fw:contracts` — open contracts.
-- `/scriptevent fw:admin_gp <exactPlayerName> <amount>` — grant GP; the sender must also have the `fw_admin` tag.
-
-## Import and test
-
-1. Import both pack folders into Minecraft Bedrock.
-2. Activate both packs in a test world.
-3. Enable cheats for the script-event commands.
-4. Join the world and run `/scriptevent fw:guild`.
-5. Accept a contract, defeat its target mobs, then reopen Contracts to claim the reward.
-6. Leave and rejoin to confirm the profile persists.
-
-The current implementation is a playable RPG-system foundation, not a finished content pack. Models, textures, sounds, NPCs, locations and further quest content remain future milestones.
+The full RPG content roadmap is in `docs/PROJECT_PLAN.md`. This is an actively developed foundation, not yet the complete planned content set.

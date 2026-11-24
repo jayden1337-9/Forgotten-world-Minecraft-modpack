@@ -1,25 +1,21 @@
-# The Forgotten World — project foundation
+# The Forgotten World — project roadmap
 
-## Platform
-- Minecraft Bedrock add-on format: Behavior Pack + Resource Pack.
-- Keep the core lightweight and avoid extra script dependencies unless a feature needs them.
-- Current scripts use stable `@minecraft/server` 2.10.0 and `@minecraft/server-ui` 2.2.0.
-
-## Implemented systems
-- Persistent player profiles using player dynamic properties.
-- Guild points, coins and eight guild ranks (F through SS).
+## Implemented foundation
+- Persistent profiles, GP, coins and ranks F through SS.
 - Guild Card and contract-board forms.
-- Three starter mob-hunt contracts with saved progress and claimable rewards.
-- Seven rarity tiers in shared configuration.
+- Three starter mob-hunt contracts.
+- Custom void dimension `forgotten:forgotten_abyss`.
+- Chat phrase `LET ME IN MOMMY` opens the dimension.
+- First custom geometry, texture and animation-backed entity: Abyss Watcher.
+- GitHub Actions validation and .mcaddon packaging.
 
-## Planned content milestones
-1. Add custom armor, clothing, creatures, NPCs and environment assets.
-2. Add settlement and dungeon layouts.
-3. Expand quest chains, reputation, merchants and crafting.
-4. Add additional UI polish, localization and accessibility options.
-5. Test on current retail Bedrock clients and dedicated multiplayer worlds.
+## Content roadmap
+1. Expand the creature roster with original geometry, textures, animation controllers, AI and loot.
+2. Add custom blocks, ores, crafting materials, weapons, armor and item icons.
+3. Build settlements, castles, ruins, caves, dungeons and boss arenas.
+4. Add NPC dialogue, merchants, quest chains, reputation and progression.
+5. Expand the Abyss into multiple regions and add further dimensions.
+6. Add sound design, localization, UI polish and accessibility.
+7. Test on current retail Bedrock clients and multiplayer worlds.
 
-## Compatibility
-- Behavior Pack dependency versions are pinned in `behavior_pack/manifest.json`.
-- Test in a disposable world before using the packs in an existing save.
-- Record the exact Minecraft retail version used for each compatibility test.
+Use a disposable world for tests and record the exact retail Minecraft version.

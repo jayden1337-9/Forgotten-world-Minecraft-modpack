@@ -1,0 +1,21 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.forgotten.abyss_watcher.idle": {
+      "loop": true, "animation_length": 2,
+      "bones": {
+        "body": { "rotation": [0, 0, "math.sin(query.anim_time * 180) * 2"] },
+        "head": { "rotation": ["math.sin(query.anim_time * 90) * 3", 0, 0] }
+      }
+    },
+    "animation.forgotten.abyss_watcher.walk": {
+      "loop": true, "animation_length": 1,
+      "bones": {
+        "left_leg": { "rotation": ["math.cos(query.anim_time * 360) * 35", 0, 0] },
+        "right_leg": { "rotation": ["math.cos(query.anim_time * 360 + 180) * 35", 0, 0] },
+        "left_arm": { "rotation": ["math.cos(query.anim_time * 360 + 180) * 25", 0, 0] },
+        "right_arm": { "rotation": ["math.cos(query.anim_time * 360) * 25", 0, 0] }
+      }
+    }
+  }
+}

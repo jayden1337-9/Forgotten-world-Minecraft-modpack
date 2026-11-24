@@ -1,0 +1,10 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:dimension": {
+    "description": { "identifier": "forgotten:forgotten_abyss" },
+    "components": {
+      "minecraft:dimension_bounds": { "min": 0, "max": 256 },
+      "minecraft:generation": { "generator_type": "void" }
+    }
+  }
+}
