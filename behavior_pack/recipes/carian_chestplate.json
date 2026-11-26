@@ -1,0 +1,25 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "forgotten:carian_chestplate"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "M M",
+      "MMM",
+      "MMM"
+    ],
+    "key": {
+      "M": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    "result": {
+      "item": "forgotten:carian_chestplate",
+      "count": 1
+    }
+  }
+}
