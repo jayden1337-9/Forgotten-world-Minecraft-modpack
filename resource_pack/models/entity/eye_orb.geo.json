@@ -1,0 +1,79 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.forgotten.eye_orb",
+        "texture_width": 64,
+        "texture_height": 64,
+        "visible_bounds_width": 2,
+        "visible_bounds_height": 4,
+        "visible_bounds_offset": [
+          0,
+          1.5,
+          0
+        ]
+      },
+      "bones": [
+        {
+          "name": "root",
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -7,
+                1,
+                -7
+              ],
+              "size": [
+                14,
+                14,
+                14
+              ],
+              "uv": [
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                -3,
+                5,
+                -8
+              ],
+              "size": [
+                6,
+                6,
+                2
+              ],
+              "uv": [
+                32,
+                0
+              ]
+            },
+            {
+              "origin": [
+                -1,
+                7,
+                -9
+              ],
+              "size": [
+                2,
+                2,
+                1
+              ],
+              "uv": [
+                48,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
