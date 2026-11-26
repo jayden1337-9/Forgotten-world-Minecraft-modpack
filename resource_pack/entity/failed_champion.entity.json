@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "forgotten:failed_champion",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/crystal_golem"
+      },
+      "geometry": {
+        "default": "geometry.forgotten.crystal_golem"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}
