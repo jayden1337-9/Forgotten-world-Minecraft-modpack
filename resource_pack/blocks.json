@@ -15,5 +15,17 @@
   "forgotten:abyss_lamp": {
     "textures": "abyss_lamp",
     "sound": "glass"
+  },
+  "forgotten:abyss_portal_frame": {
+    "textures": "abyss_portal_frame",
+    "sound": "stone"
+  },
+  "forgotten:abyss_keystone": {
+    "textures": "abyss_keystone",
+    "sound": "amethyst"
+  },
+  "forgotten:abyss_portal": {
+    "textures": "abyss_portal",
+    "sound": "glass"
   }
 }
