@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "forgotten:verdant_slime",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/ash_wolf"
+      },
+      "geometry": {
+        "default": "geometry.forgotten.ash_wolf"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}
