@@ -1,0 +1,17 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:block": {
+    "description": {
+      "identifier": "forgotten:abyss_portal_frame",
+      "menu_category": { "category": "construction" }
+    },
+    "components": {
+      "minecraft:destructible_by_mining": { "seconds_to_destroy": 4.0 },
+      "minecraft:map_color": "#34264F",
+      "minecraft:geometry": "minecraft:geometry.full_block",
+      "minecraft:material_instances": {
+        "*": { "texture": "abyss_portal_frame", "render_method": "opaque" }
+      }
+    }
+  }
+}
