@@ -10,7 +10,7 @@
         "default": "textures/entity/void_knight"
       },
       "geometry": {
-        "default": "geometry.forgotten.void_knight"
+        "default": "geometry.forgotten.humanoid"
       },
       "render_controllers": [
         "controller.render.default"
