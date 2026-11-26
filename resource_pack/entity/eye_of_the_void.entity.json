@@ -10,7 +10,7 @@
         "default": "textures/entity/abyss_watcher"
       },
       "geometry": {
-        "default": "geometry.forgotten.abyss_watcher"
+        "default": "geometry.forgotten.eye_orb"
       },
       "render_controllers": [
         "controller.render.default"
