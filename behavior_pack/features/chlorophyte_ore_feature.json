@@ -1,0 +1,18 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:ore_feature": {
+    "description": {
+      "identifier": "forgotten:chlorophyte_ore_feature"
+    },
+    "count": 2,
+    "replace_rules": [
+      {
+        "places_block": "forgotten:chlorophyte_ore",
+        "may_replace": [
+          "minecraft:stone",
+          "minecraft:deepslate"
+        ]
+      }
+    ]
+  }
+}
