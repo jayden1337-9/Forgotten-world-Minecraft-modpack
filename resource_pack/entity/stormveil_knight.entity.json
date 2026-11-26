@@ -10,7 +10,7 @@
         "default": "textures/entity/abyss_watcher"
       },
       "geometry": {
-        "default": "geometry.forgotten.void_knight"
+        "default": "geometry.forgotten.boss_knight"
       },
       "render_controllers": [
         "controller.render.default"
