@@ -26,6 +26,8 @@ jobs:
           for path in ["behavior_pack/manifest.json", "resource_pack/manifest.json", "behavior_pack/scripts/main.js"]:
               assert (root / path).is_file(), f"Missing required file: {path}"
           print(f"Validated {len(files)} JSON files")
+      - name: Check JavaScript syntax
+        run: node --check behavior_pack/scripts/main.js
           PY
       - name: Package .mcaddon
         run: |
