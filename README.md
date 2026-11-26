@@ -5,7 +5,7 @@ A Minecraft Bedrock fantasy RPG add-on built as a Behavior Pack + Resource Pack.
 ## Playable systems
 - Persistent player profiles, guild points, coins and ranks F through SS.
 - Guild Card, contract board, six hunt contracts and reward claiming.
-- Secret dimension entrance: type exactly `LET ME IN MOMMY` in chat.
+- Craftable Abyss Portal: build a 4x5 frame from Abyss Portal Frame blocks and place an Abyss Keystone in the lower-left opening.
 - Three floating Abyss regions: Shattered Landing, Ashen Reach and Crystal Deep.
 - Guild Guide NPC: interact to travel between regions, open contracts or view your card.
 - Generated dungeon chambers, boss dais, lantern pillars and region guardians.
@@ -30,7 +30,7 @@ A Minecraft Bedrock fantasy RPG add-on built as a Behavior Pack + Resource Pack.
 3. Download the `ForgottenWorld-...` artifact and extract the ZIP.
 4. Open `ForgottenWorld.mcaddon` with Minecraft Bedrock.
 5. Create a new test world and activate both The Forgotten World Behavior Pack and Resource Pack.
-6. Type `LET ME IN MOMMY` in chat to enter the Abyss.
+6. Build a 4x5 rectangle using Abyss Portal Frame blocks (2 blocks wide by 3 blocks high inside). Place an Abyss Keystone in the lower-left interior block to activate it. Walk into the portal to enter the Abyss.
 7. Find the Guild Guide at the Shattered Landing and interact with it to travel.
 
 ## Guild commands
