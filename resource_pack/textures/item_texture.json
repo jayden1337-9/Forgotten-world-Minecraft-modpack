@@ -28,6 +28,33 @@
     },
     "carian_chestplate": {
       "textures": "textures/items/forgotten_equipment"
+    },
+    "nights_edge": {
+      "textures": "textures/items/forgotten_equipment"
+    },
+    "zenith": {
+      "textures": "textures/items/forgotten_equipment"
+    },
+    "demon_scythe": {
+      "textures": "textures/items/forgotten_equipment"
+    },
+    "dream_nail": {
+      "textures": "textures/items/forgotten_equipment"
+    },
+    "kings_brand": {
+      "textures": "textures/items/forgotten_equipment"
+    },
+    "shade_cloak": {
+      "textures": "textures/items/forgotten_equipment"
+    },
+    "moonveil": {
+      "textures": "textures/items/forgotten_equipment"
+    },
+    "rivers_of_blood": {
+      "textures": "textures/items/forgotten_equipment"
+    },
+    "blasphemous_blade": {
+      "textures": "textures/items/forgotten_equipment"
     }
   }
 }
