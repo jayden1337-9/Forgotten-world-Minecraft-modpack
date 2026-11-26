@@ -1,0 +1,18 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:ore_feature": {
+    "description": {
+      "identifier": "forgotten:lifeblood_crystal_feature"
+    },
+    "count": 3,
+    "replace_rules": [
+      {
+        "places_block": "forgotten:lifeblood_crystal",
+        "may_replace": [
+          "minecraft:stone",
+          "minecraft:deepslate"
+        ]
+      }
+    ]
+  }
+}
