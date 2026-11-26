@@ -10,7 +10,7 @@
         "default": "textures/entity/ash_wolf"
       },
       "geometry": {
-        "default": "geometry.forgotten.ash_wolf"
+        "default": "geometry.forgotten.verdant_slime"
       },
       "render_controllers": [
         "controller.render.default"
