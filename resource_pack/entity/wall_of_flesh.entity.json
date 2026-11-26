@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "forgotten:wall_of_flesh",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/abyss_watcher"
+      },
+      "geometry": {
+        "default": "geometry.forgotten.boss_knight"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}
