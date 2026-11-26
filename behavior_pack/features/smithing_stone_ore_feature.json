@@ -1,0 +1,18 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:ore_feature": {
+    "description": {
+      "identifier": "forgotten:smithing_stone_ore_feature"
+    },
+    "count": 4,
+    "replace_rules": [
+      {
+        "places_block": "forgotten:smithing_stone_ore",
+        "may_replace": [
+          "minecraft:stone",
+          "minecraft:deepslate"
+        ]
+      }
+    ]
+  }
+}
