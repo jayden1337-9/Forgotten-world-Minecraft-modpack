@@ -19,7 +19,16 @@ const QUESTS = [
   { id: "skeleton_watch", name: "Ranger's Watch", description: "Defeat 3 skeletons.", entity: "minecraft:skeleton", goal: 3, gp: 55, coins: 80 },
   { id: "ashen_wolves", name: "Ashen Hunt", description: "Defeat 4 Ashen Wolves.", entity: "forgotten:ash_wolf", goal: 4, gp: 110, coins: 140 },
   { id: "crystal_guard", name: "Crystal Breaker", description: "Defeat 3 Crystal Golems.", entity: "forgotten:crystal_golem", goal: 3, gp: 180, coins: 240 },
-  { id: "knight_fall", name: "Knightfall", description: "Defeat a Void Knight.", entity: "forgotten:void_knight", goal: 1, gp: 350, coins: 500 }
+  { id: "knight_fall", name: "Knightfall", description: "Defeat a Void Knight.", entity: "forgotten:void_knight", goal: 1, gp: 350, coins: 500 },
+  { id: "verdant_slimes", name: "Green Tide", description: "Defeat 6 Verdant Slimes.", entity: "forgotten:verdant_slime", goal: 6, gp: 65, coins: 90 },
+  { id: "bone_archers", name: "Bone Line", description: "Defeat 4 Bone Archers.", entity: "forgotten:bone_archer", goal: 4, gp: 90, coins: 120 },
+  { id: "hallownest_scouts", name: "Lost Colony", description: "Defeat 5 Hallownest Scouts.", entity: "forgotten:hallownest_scout", goal: 5, gp: 110, coins: 150 },
+  { id: "hornet_guardian", name: "Needle in the Dark", description: "Defeat the Hornet Guardian.", entity: "forgotten:hornet_guardian", goal: 1, gp: 220, coins: 300 },
+  { id: "failed_champion", name: "Broken Shell", description: "Defeat the Failed Champion.", entity: "forgotten:failed_champion", goal: 1, gp: 550, coins: 800 },
+  { id: "limgrave_soldiers", name: "Limgrave Patrol", description: "Defeat 5 Limgrave Soldiers.", entity: "forgotten:limgrave_soldier", goal: 5, gp: 100, coins: 140 },
+  { id: "stormveil_knights", name: "Stormveil Breach", description: "Defeat 3 Stormveil Knights.", entity: "forgotten:stormveil_knight", goal: 3, gp: 160, coins: 220 },
+  { id: "tree_sentinel", name: "Golden Sentinel", description: "Defeat the Tree Sentinel.", entity: "forgotten:tree_sentinel", goal: 1, gp: 850, coins: 1200 },
+  { id: "eye_of_void", name: "Watcher in the Sky", description: "Defeat the Eye of the Void.", entity: "forgotten:eye_of_the_void", goal: 1, gp: 300, coins: 450 }
 ];
 
 function freshProfile() {
