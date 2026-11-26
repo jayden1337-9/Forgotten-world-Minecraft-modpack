@@ -28,7 +28,16 @@ const QUESTS = [
   { id: "limgrave_soldiers", name: "Limgrave Patrol", description: "Defeat 5 Limgrave Soldiers.", entity: "forgotten:limgrave_soldier", goal: 5, gp: 100, coins: 140 },
   { id: "stormveil_knights", name: "Stormveil Breach", description: "Defeat 3 Stormveil Knights.", entity: "forgotten:stormveil_knight", goal: 3, gp: 160, coins: 220 },
   { id: "tree_sentinel", name: "Golden Sentinel", description: "Defeat the Tree Sentinel.", entity: "forgotten:tree_sentinel", goal: 1, gp: 850, coins: 1200 },
-  { id: "eye_of_void", name: "Watcher in the Sky", description: "Defeat the Eye of the Void.", entity: "forgotten:eye_of_the_void", goal: 1, gp: 300, coins: 450 }
+  { id: "eye_of_void", name: "Watcher in the Sky", description: "Defeat the Eye of the Void.", entity: "forgotten:eye_of_the_void", goal: 1, gp: 300, coins: 450 },
+  { id: "king_slime", name: "Gelatinous Crown", description: "Defeat King Slime.", entity: "forgotten:king_slime", goal: 1, gp: 400, coins: 600 },
+  { id: "skeletron", name: "Dungeon Keeper", description: "Defeat Skeletron.", entity: "forgotten:skeletron", goal: 1, gp: 550, coins: 800 },
+  { id: "wall_of_flesh", name: "Underworld Barrier", description: "Defeat the Wall of Flesh.", entity: "forgotten:wall_of_flesh", goal: 1, gp: 850, coins: 1200 },
+  { id: "false_knight", name: "Broken Armour", description: "Defeat the False Knight.", entity: "forgotten:false_knight", goal: 1, gp: 500, coins: 700 },
+  { id: "soul_master", name: "Soul Sanctum", description: "Defeat the Soul Master.", entity: "forgotten:soul_master", goal: 1, gp: 650, coins: 900 },
+  { id: "mantis_lord", name: "Mantis Challenge", description: "Defeat the Mantis Lord.", entity: "forgotten:mantis_lord", goal: 1, gp: 600, coins: 850 },
+  { id: "margit_fell_omen", name: "Omen at the Gate", description: "Defeat Margit.", entity: "forgotten:margit_fell_omen", goal: 1, gp: 700, coins: 1000 },
+  { id: "godrick_grafted", name: "Stormveil Lord", description: "Defeat Godrick.", entity: "forgotten:godrick_grafted", goal: 1, gp: 950, coins: 1400 },
+  { id: "malenia_blade", name: "Blade of Miquella", description: "Defeat Malenia.", entity: "forgotten:malenia_blade", goal: 1, gp: 1400, coins: 2000 }
 ];
 
 function freshProfile() {
@@ -161,7 +170,16 @@ world.afterEvents.entityDie.subscribe(event => {
     "forgotten:eye_of_the_void": [250, 350],
     "forgotten:failed_champion": [500, 700],
     "forgotten:tree_sentinel": [750, 1000],
-    "forgotten:void_knight": [350, 500]
+    "forgotten:void_knight": [350, 500],
+    "forgotten:king_slime": [400, 600],
+    "forgotten:skeletron": [550, 800],
+    "forgotten:wall_of_flesh": [850, 1200],
+    "forgotten:false_knight": [500, 700],
+    "forgotten:soul_master": [650, 900],
+    "forgotten:mantis_lord": [600, 850],
+    "forgotten:margit_fell_omen": [700, 1000],
+    "forgotten:godrick_grafted": [950, 1400],
+    "forgotten:malenia_blade": [1400, 2000]
   };
   const bossReward = bossRewards[event.deadEntity.typeId];
   if (bossReward) {
@@ -487,7 +505,16 @@ const BOSS_ABILITIES = {
  "forgotten:eye_of_the_void": {interval:100,radius:5,damage:6,message:"§5The Eye of the Void releases a pulse!"},
  "forgotten:failed_champion": {interval:140,radius:4,damage:9,message:"§cThe Failed Champion slams the ground!"},
  "forgotten:tree_sentinel": {interval:120,radius:3.5,damage:12,message:"§6The Tree Sentinel charges!"},
- "forgotten:void_knight": {interval:130,radius:4,damage:8,message:"§8The Void Knight unleashes a shockwave!"}
+ "forgotten:void_knight": {interval:130,radius:4,damage:8,message:"§8The Void Knight unleashes a shockwave!"},
+ "forgotten:king_slime": {interval:110,radius:5,damage:7,message:"§bKing Slime crashes down!"},
+ "forgotten:skeletron": {interval:125,radius:5,damage:9,message:"§7Skeletron sweeps its arms!"},
+ "forgotten:wall_of_flesh": {interval:100,radius:6,damage:12,message:"§cThe Wall of Flesh surges forward!"},
+ "forgotten:false_knight": {interval:135,radius:4,damage:10,message:"§6The False Knight pounds the ground!"},
+ "forgotten:soul_master": {interval:115,radius:5,damage:10,message:"§5The Soul Master releases a burst!"},
+ "forgotten:mantis_lord": {interval:90,radius:4,damage:9,message:"§aThe Mantis Lord strikes swiftly!"},
+ "forgotten:margit_fell_omen": {interval:120,radius:5,damage:11,message:"§6Margit unleashes an omen strike!"},
+ "forgotten:godrick_grafted": {interval:135,radius:5,damage:13,message:"§eGodrick slams the arena!"},
+ "forgotten:malenia_blade": {interval:90,radius:5,damage:14,message:"§cMalenia performs a flurry!"}
 };
 system.runInterval(()=>{
  const dimensions=["minecraft:overworld","minecraft:nether","minecraft:the_end",ABYSS_DIMENSION];
