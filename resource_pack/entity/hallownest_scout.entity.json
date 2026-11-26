@@ -10,7 +10,7 @@
         "default": "textures/entity/crystal_golem"
       },
       "geometry": {
-        "default": "geometry.forgotten.ash_wolf"
+        "default": "geometry.forgotten.hallownest_bug"
       },
       "render_controllers": [
         "controller.render.default"
