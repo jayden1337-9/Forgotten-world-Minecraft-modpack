@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "forgotten:hornet_guardian",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/abyss_watcher"
+      },
+      "geometry": {
+        "default": "geometry.forgotten.void_knight"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}
