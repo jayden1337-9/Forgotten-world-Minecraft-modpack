@@ -413,6 +413,74 @@ system.runInterval(() => {
 }, 10);
 console.warn("[ForgottenWorld] Abyss portal system loaded. Phrase entrance disabled.");
 
+// Natural-world crossover ruins. Each 128x128 grid cell can receive at most
+// one small ruin. Generation only proceeds when the full footprint is natural
+// terrain, so player builds and existing structures are left untouched.
+const crossoverRuinCells = new Set();
+const NATURAL_GROUND = new Set([
+ "minecraft:grass_block","minecraft:dirt","minecraft:coarse_dirt","minecraft:podzol",
+ "minecraft:stone","minecraft:deepslate","minecraft:sand","minecraft:red_sand",
+ "minecraft:gravel","minecraft:moss_block","minecraft:snow_block"
+]);
+function generateCrossoverRuin(dim,gx,gz){
+ const key=gx+":"+gz;
+ if(crossoverRuinCells.has(key))return;
+ const cx=gx*128+64,cz=gz*128+64;
+ let surfaceY=-1;
+ for(let y=120;y>=50;y--){
+  const ground=blockAt(dim,{x:cx,y,z:cz});
+  const above=blockAt(dim,{x:cx,y:y+1,z:cz});
+  if(ground&&above&&!ground.isAir&&above.isAir&&NATURAL_GROUND.has(ground.typeId)){surfaceY=y;break;}
+ }
+ if(surfaceY<0)return;
+ // Never replace a built-up footprint or an existing ruin marker.
+ for(let dx=-5;dx<=5;dx++)for(let dz=-5;dz<=5;dz++){
+  const ground=blockAt(dim,{x:cx+dx,y:surfaceY,z:cz+dz});
+  const air=blockAt(dim,{x:cx+dx,y:surfaceY+1,z:cz+dz});
+  if(!ground||!air||!NATURAL_GROUND.has(ground.typeId)||!air.isAir)return;
+ }
+ if(blockAt(dim,{x:cx,y:surfaceY+1,z:cz})?.typeId==="forgotten:runic_bricks")return;
+ const variant=((gx*13+gz*7)%3+3)%3;
+ const floor=variant===0?"minecraft:stone_bricks":variant===1?"minecraft:deepslate_bricks":"forgotten:runic_bricks";
+ const wall=variant===0?"minecraft:mossy_stone_bricks":variant===1?"minecraft:polished_blackstone_bricks":"minecraft:stone_bricks";
+ for(let dx=-4;dx<=4;dx++)for(let dz=-4;dz<=4;dz++){
+  const edge=Math.abs(dx)===4||Math.abs(dz)===4;
+  const p={x:cx+dx,y:surfaceY+1,z:cz+dz};
+  const b=blockAt(dim,p);if(!b)continue;
+  if(!edge)b.setType(floor);
+  else{
+   b.setType(wall);
+   for(let h=1;h<=3;h++){
+    const part=blockAt(dim,{x:cx+dx,y:surfaceY+1+h,z:cz+dz});
+    if(part)part.setType((h===3&&((dx+dz)%2===0))?"minecraft:stone_brick_wall":wall);
+   }
+  }
+ }
+ // Leave a clear doorway and add a central landmark that identifies the set.
+ for(let h=1;h<=2;h++){
+  const door=blockAt(dim,{x:cx,y:surfaceY+1+h,z:cz-4});
+  if(door)door.setType("minecraft:air");
+ }
+ const marker=blockAt(dim,{x:cx,y:surfaceY+2,z:cz});
+ if(marker)marker.setType(variant===0?"minecraft:gold_block":variant===1?"minecraft:amethyst_block":"forgotten:frost_crystal");
+ const lamp=blockAt(dim,{x:cx,y:surfaceY+3,z:cz});
+ if(lamp)lamp.setType("minecraft:lantern");
+ crossoverRuinCells.add(key);
+}
+system.runInterval(()=>{
+ const dim=world.getDimension("minecraft:overworld");
+ for(const player of world.getPlayers()){
+  if(player.dimension.id!=="minecraft:overworld")continue;
+  const gx=Math.floor(player.location.x/128),gz=Math.floor(player.location.z/128);
+  for(let ox=-1;ox<=1;ox++)for(let oz=-1;oz<=1;oz++){
+   const x=(gx+ox)*128+64,z=(gz+oz)*128+64;
+   const dx=player.location.x-x,dz=player.location.z-z;
+   if(dx*dx+dz*dz<80*80)generateCrossoverRuin(dim,gx+ox,gz+oz);
+  }
+ }
+},200);
+
+
 // Boss ability pulses: the crossover bosses have distinct arena attacks.
 const bossAbilityCooldown = new Map();
 const BOSS_ABILITIES = {
