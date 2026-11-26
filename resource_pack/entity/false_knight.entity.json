@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "forgotten:false_knight",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/crystal_golem"
+      },
+      "geometry": {
+        "default": "geometry.forgotten.boss_knight"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}
