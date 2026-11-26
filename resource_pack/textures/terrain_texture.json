@@ -12,6 +12,15 @@
     },
     "abyss_lamp": {
       "textures": "textures/blocks/abyss_crystal_ore"
+    },
+    "abyss_portal_frame": {
+      "textures": "textures/blocks/abyss_crystal_ore"
+    },
+    "abyss_keystone": {
+      "textures": "textures/items/forgotten_equipment"
+    },
+    "abyss_portal": {
+      "textures": "textures/items/abyss_scepter"
     }
   }
 }
