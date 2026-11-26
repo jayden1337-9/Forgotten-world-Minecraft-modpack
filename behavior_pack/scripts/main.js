@@ -198,7 +198,6 @@ console.warn("[ForgottenWorld] RPG systems loaded.");
 
 
 // Expanded Abyss: three islands, two dungeon regions and an interactive wayfinder.
-const ABYSS_PHRASE = "LET ME IN MOMMY";
 const ABYSS_DIMENSION = "forgotten:forgotten_abyss";
 const ABYSS_REGIONS = [
  {name:"The Shattered Landing",id:"hub",x:0,z:0,floor:"minecraft:deepslate_bricks",trim:"minecraft:polished_blackstone_bricks"},
@@ -364,7 +363,7 @@ function transferThroughPortal(player, portalBlock) {
   }
 
   const loc = portalBlock.location;
-  const axis = blockAt(player.dimension, {x:loc.x+1,y:loc.y,z:loc.z})?.typeId === PORTAL_FIELD ? "x" : "z";
+  const axis = (blockAt(player.dimension, {x:loc.x+1,y:loc.y,z:loc.z})?.typeId === PORTAL_FIELD || blockAt(player.dimension, {x:loc.x-1,y:loc.y,z:loc.z})?.typeId === PORTAL_FIELD) ? "x" : "z";
   const safe = returnPointFromPortal(loc, axis);
   try {
     player.setDynamicProperty("fw:portal_return", JSON.stringify({
