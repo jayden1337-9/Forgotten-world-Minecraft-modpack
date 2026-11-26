@@ -148,6 +148,17 @@ world.afterEvents.entityDie.subscribe(event => {
   const killer = event.damageSource.damagingEntity;
   if (!killer || killer.typeId !== "minecraft:player") return;
   const player = killer;
+  const bossRewards = {
+    "forgotten:eye_of_the_void": [250, 350],
+    "forgotten:failed_champion": [500, 700],
+    "forgotten:tree_sentinel": [750, 1000],
+    "forgotten:void_knight": [350, 500]
+  };
+  const bossReward = bossRewards[event.deadEntity.typeId];
+  if (bossReward) {
+    addRewards(player, bossReward[0], bossReward[1]);
+    player.sendMessage("§dBoss defeated! §7A guild record has been added.");
+  }
   const profile = getProfile(player);
   let changed = false;
   for (const quest of QUESTS) {
@@ -237,14 +248,17 @@ function buildAbyssRegion(dim,r){
  if(r.id==="hub"){
   abyssEntity(dim,"forgotten:guild_guide",{x:5.5,y:65,z:2.5},16);
   abyssEntity(dim,"forgotten:abyss_watcher",{x:-5.5,y:65,z:-5.5},18);
+  abyssEntity(dim,"forgotten:eye_of_the_void",{x:0.5,y:65,z:-31.5},18);
  }else if(r.id==="ashen"){
   abyssEntity(dim,"forgotten:ash_wolf",{x:cx+5.5,y:65,z:cz+4.5},16);
-  abyssEntity(dim,"forgotten:ash_wolf",{x:cx-5.5,y:65,z:cz-4.5},16);
+  abyssEntity(dim,"forgotten:tree_sentinel",{x:cx-5.5,y:65,z:cz-4.5},16);
+  abyssEntity(dim,"forgotten:stormveil_knight",{x:cx+2.5,y:65,z:cz+8.5},16);
   abyssEntity(dim,"forgotten:void_knight",{x:cx,y:60,z:dz0},18);
  }else{
   abyssEntity(dim,"forgotten:crystal_golem",{x:cx+5.5,y:65,z:cz+4.5},16);
-  abyssEntity(dim,"forgotten:crystal_golem",{x:cx-5.5,y:65,z:cz-4.5},16);
-  abyssEntity(dim,"forgotten:void_knight",{x:cx,y:60,z:dz0},18);
+  abyssEntity(dim,"forgotten:hallownest_scout",{x:cx-5.5,y:65,z:cz-4.5},16);
+  abyssEntity(dim,"forgotten:hornet_guardian",{x:cx+2.5,y:65,z:cz+8.5},16);
+  abyssEntity(dim,"forgotten:failed_champion",{x:cx,y:60,z:dz0},18);
  }
  builtRegions.add(r.id);
 }
@@ -389,3 +403,34 @@ system.runInterval(() => {
   }
 }, 10);
 console.warn("[ForgottenWorld] Abyss portal system loaded. Phrase entrance disabled.");
+
+// Boss ability pulses: the crossover bosses have distinct arena attacks.
+const bossAbilityCooldown = new Map();
+const BOSS_ABILITIES = {
+ "forgotten:eye_of_the_void": {interval:100,radius:5,damage:6,message:"§5The Eye of the Void releases a pulse!"},
+ "forgotten:failed_champion": {interval:140,radius:4,damage:9,message:"§cThe Failed Champion slams the ground!"},
+ "forgotten:tree_sentinel": {interval:120,radius:3.5,damage:12,message:"§6The Tree Sentinel charges!"},
+ "forgotten:void_knight": {interval:130,radius:4,damage:8,message:"§8The Void Knight unleashes a shockwave!"}
+};
+system.runInterval(()=>{
+ const dimensions=["minecraft:overworld","minecraft:nether","minecraft:the_end",ABYSS_DIMENSION];
+ for(const dimensionId of dimensions){
+  let dim;try{dim=world.getDimension(dimensionId);}catch{continue;}
+  for(const [type,ability] of Object.entries(BOSS_ABILITIES)){
+   let bosses=[];try{bosses=dim.getEntities({type});}catch{}
+   for(const boss of bosses){
+    const last=bossAbilityCooldown.get(boss.id)??0;
+    if(system.currentTick-last<ability.interval)continue;
+    bossAbilityCooldown.set(boss.id,system.currentTick);
+    for(const player of world.getPlayers()){
+     if(player.dimension.id!==dimensionId)continue;
+     const dx=player.location.x-boss.location.x,dy=player.location.y-boss.location.y,dz=player.location.z-boss.location.z;
+     if(dx*dx+dy*dy+dz*dz<=ability.radius*ability.radius){
+      try{player.applyDamage(ability.damage);player.sendMessage(ability.message);}catch{}
+     }
+    }
+   }
+  }
+ }
+},20);
+
