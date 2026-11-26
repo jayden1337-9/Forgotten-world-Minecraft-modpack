@@ -1,48 +1,51 @@
 # The Forgotten World
 
-A Minecraft Bedrock fantasy RPG add-on built as a Behavior Pack + Resource Pack. GitHub Actions builds the installable `.mcaddon` automatically.
+A Minecraft Bedrock fantasy RPG add-on with a shared Overworld crossover, the Forgotten Abyss, guild progression and custom content. GitHub Actions builds the installable `.mcaddon`.
 
-## Playable systems
+## Core systems
 - Persistent player profiles, guild points, coins and ranks F through SS.
-- Guild Card, contract board, six hunt contracts and reward claiming.
-- Craftable Abyss Portal: build a 4x5 frame from Abyss Portal Frame blocks and place an Abyss Keystone in the lower-left opening.
+- Guild Card, contracts, kill tracking, boss rewards and claimable contracts.
+- Craftable Abyss Portal: 4x5 Abyss Portal Frame with an Abyss Keystone activation block; no chat phrase.
 - Three floating Abyss regions: Shattered Landing, Ashen Reach and Crystal Deep.
-- Guild Guide NPC: interact to travel between regions, open contracts or view your card.
-- Generated dungeon chambers, boss dais, lantern pillars and region guardians.
+- Guild Guide wayfinder, generated dungeons and boss arenas.
+- Natural Overworld ruins are generated on a 128-block grid only when the footprint is untouched natural terrain.
 
-## Creatures
-- Abyss Watcher — guardian.
-- Ashen Wolf — fast melee creature with custom geometry and its own pixel texture.
-- Crystal Golem — heavy guardian with custom geometry and its own pixel texture.
-- Void Knight — high-health boss with custom geometry and its own pixel texture.
-- Guild Guide — interactive region wayfinder with a custom model and texture.
+## Crossover creatures
+- Terraria-inspired: Verdant Slime, Eye of the Void (boss), Bone Archer.
+- Hollow Knight-inspired: Hallownest Scout, Hornet Guardian, Failed Champion (boss).
+- Elden Ring-inspired: Limgrave Soldier, Stormveil Knight, Tree Sentinel (boss).
+- Existing Forgotten World creatures: Abyss Watcher, Ashen Wolf, Crystal Golem, Void Knight and Guild Guide.
+- The crossover entities have dedicated Bedrock geometry, biome spawn rules, loot and boss pulse attacks.
 
-## Equipment and blocks
-- Abyss Scepter and Ashsteel Blade.
-- Abyss Helm, Chestplate, Leggings and Boots.
-- Custom 3D geometry and attachable assets for the weapon and armor set.
-- Abyss Crystal Ore, Moonstone Bricks and Abyss Lamp.
-- Shaped crafting recipes for the weapons and armor.
+## Crossover equipment
+- Terraria-inspired: Copper Shortsword and Terra Blade.
+- Hollow Knight-inspired: Old Nail, Pure Nail and Hornet's Needle.
+- Elden Ring-inspired: Limgrave Greatsword, Stormveil Greatsword and Erdtree Seal.
+- Armour: Shadow Chestplate, Wanderer's Cloak and Carian Knight Chestplate.
+- Existing Abyss Scepter, Ashsteel Blade and Abyss armour remain available.
+
+## Crossover blocks and ores
+- Demonite Ore, Hellstone Ore, Chlorophyte Ore.
+- Pale Ore and Lifeblood Crystal.
+- Smithing Stone Ore and Glintstone Ore.
+- Runic Bricks and Frost Crystal.
+- Existing Abyss Crystal Ore, Moonstone Bricks, Abyss Lamp and portal blocks.
+- Ore feature rules distribute the new ores through natural Overworld stone and deepslate layers.
 
 ## Install
 1. Open the [latest successful GitHub Actions build](https://github.com/jayden1337-9/Forgotten-world-Minecraft-modpack/actions).
 2. Select the newest **Build Bedrock Add-on** run for the `main` branch.
 3. Download the `ForgottenWorld-...` artifact and extract the ZIP.
 4. Open `ForgottenWorld.mcaddon` with Minecraft Bedrock.
-5. Create a new test world and activate both The Forgotten World Behavior Pack and Resource Pack.
-6. Build a 4x5 rectangle using Abyss Portal Frame blocks (2 blocks wide by 3 blocks high inside). Place an Abyss Keystone in the lower-left interior block to activate it. Walk into the portal to enter the Abyss.
-7. Find the Guild Guide at the Shattered Landing and interact with it to travel.
+5. Create a test world and activate both The Forgotten World Behavior Pack and Resource Pack.
+6. Craft the portal frame and Keystone, build the 4x5 frame, and place the Keystone in the lower-left interior block.
+7. Explore the normal Overworld for crossover mobs, ores and ruins. Use the Guild Guide after entering the Abyss.
 
 ## Guild commands
-- `/scriptevent fw:guild` — open the guild menu.
+- `/scriptevent fw:guild` — open the Adventurer Guild.
 - `/scriptevent fw:card` — open your Guild Card.
 - `/scriptevent fw:contracts` — browse contracts.
 - `/scriptevent fw:admin_gp <exactPlayerName> <amount>` — admin grant; sender needs the `fw_admin` tag.
 
-## Build
-Push to `main` or manually run **Build Bedrock Add-on** in Actions. The workflow validates every JSON file, packages the Behavior Pack and Resource Pack, and uploads the `.mcaddon` artifact. Version tags beginning with `v` publish a GitHub Release.
-
-## Validation
-The current CI build validates JSON and successfully packages the add-on. In-game behavior still needs testing on the target retail Bedrock version; report errors with the exact game version and content-log message.
-
-See `docs/ABYSS_REGIONS.md`, `docs/CONTENT_CATALOG.md` and `docs/PROJECT_PLAN.md` for the current content.
+## Build and validation
+Push to `main` or manually run **Build Bedrock Add-on** in Actions. CI validates every JSON file, checks JavaScript syntax, packages both packs and uploads the `.mcaddon` artifact. In-game behaviour, spawn rates and terrain placement still need testing on the target retail Bedrock version.
