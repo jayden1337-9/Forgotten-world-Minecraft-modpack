@@ -19,6 +19,15 @@
     },
     "abyss_boots": {
       "textures": "textures/items/forgotten_equipment"
+    },
+    "shadow_chestplate": {
+      "textures": "textures/items/forgotten_equipment"
+    },
+    "wanderer_cloak": {
+      "textures": "textures/items/forgotten_equipment"
+    },
+    "carian_chestplate": {
+      "textures": "textures/items/forgotten_equipment"
     }
   }
 }
