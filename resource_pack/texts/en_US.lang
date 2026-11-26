@@ -36,3 +36,6 @@ tile.forgotten:smithing_stone_ore.name=Smithing Stone Ore
 tile.forgotten:glintstone_ore.name=Glintstone Ore
 tile.forgotten:runic_bricks.name=Runic Bricks
 tile.forgotten:frost_crystal.name=Frost Crystal
+item.forgotten:shadow_chestplate.name=Shadow Chestplate
+item.forgotten:wanderer_cloak.name=Wanderer's Cloak
+item.forgotten:carian_chestplate.name=Carian Knight Chestplate
