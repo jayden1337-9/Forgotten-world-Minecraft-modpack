@@ -21,6 +21,33 @@
     },
     "abyss_portal": {
       "textures": "textures/items/abyss_scepter"
+    },
+    "demonite_ore": {
+      "textures": "textures/blocks/abyss_crystal_ore"
+    },
+    "hellstone_ore": {
+      "textures": "textures/blocks/abyss_crystal_ore"
+    },
+    "chlorophyte_ore": {
+      "textures": "textures/blocks/abyss_crystal_ore"
+    },
+    "pale_ore": {
+      "textures": "textures/blocks/abyss_crystal_ore"
+    },
+    "lifeblood_crystal": {
+      "textures": "textures/blocks/abyss_crystal_ore"
+    },
+    "smithing_stone_ore": {
+      "textures": "textures/blocks/abyss_crystal_ore"
+    },
+    "glintstone_ore": {
+      "textures": "textures/blocks/abyss_crystal_ore"
+    },
+    "runic_bricks": {
+      "textures": "textures/blocks/abyss_crystal_ore"
+    },
+    "frost_crystal": {
+      "textures": "textures/blocks/abyss_crystal_ore"
     }
   }
 }
