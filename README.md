@@ -11,16 +11,16 @@ A Minecraft Bedrock fantasy RPG add-on with a shared Overworld crossover, the Fo
 - Natural Overworld ruins are generated on a 128-block grid only when the footprint is untouched natural terrain.
 
 ## Crossover creatures
-- Terraria-inspired: Verdant Slime, Eye of the Void (boss), Bone Archer.
-- Hollow Knight-inspired: Hallownest Scout, Hornet Guardian, Failed Champion (boss).
-- Elden Ring-inspired: Limgrave Soldier, Stormveil Knight, Tree Sentinel (boss).
+- Terraria-inspired: Verdant Slime, Bone Archer, King Slime, Skeletron and Wall of Flesh; Eye of the Void is an original crossover boss.
+- Hollow Knight-inspired: Hallownest Scout, Hornet Guardian, False Knight, Soul Master, Mantis Lord and Failed Champion.
+- Elden Ring-inspired: Limgrave Soldier, Stormveil Knight, Tree Sentinel, Margit, Godrick and Malenia.
 - Existing Forgotten World creatures: Abyss Watcher, Ashen Wolf, Crystal Golem, Void Knight and Guild Guide.
 - The crossover entities have dedicated Bedrock geometry, biome spawn rules, loot and boss pulse attacks.
 
 ## Crossover equipment
-- Terraria-inspired: Copper Shortsword and Terra Blade.
-- Hollow Knight-inspired: Old Nail, Pure Nail and Hornet's Needle.
-- Elden Ring-inspired: Limgrave Greatsword, Stormveil Greatsword and Erdtree Seal.
+- Terraria-inspired: Copper Shortsword, Night's Edge, Terra Blade, Zenith and Demon Scythe.
+- Hollow Knight-inspired: Old Nail, Pure Nail, Hornet's Needle, Dream Nail, King's Brand and Shade Cloak.
+- Elden Ring-inspired: Limgrave Greatsword, Stormveil Greatsword, Erdtree Seal, Moonveil, Rivers of Blood and Blasphemous Blade.
 - Armour: Shadow Chestplate, Wanderer's Cloak and Carian Knight Chestplate.
 - Existing Abyss Scepter, Ashsteel Blade and Abyss armour remain available.
 
