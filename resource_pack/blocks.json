@@ -27,5 +27,41 @@
   "forgotten:abyss_portal": {
     "textures": "abyss_portal",
     "sound": "glass"
+  },
+  "forgotten:demonite_ore": {
+    "textures": "demonite_ore",
+    "sound": "stone"
+  },
+  "forgotten:hellstone_ore": {
+    "textures": "hellstone_ore",
+    "sound": "stone"
+  },
+  "forgotten:chlorophyte_ore": {
+    "textures": "chlorophyte_ore",
+    "sound": "stone"
+  },
+  "forgotten:pale_ore": {
+    "textures": "pale_ore",
+    "sound": "stone"
+  },
+  "forgotten:lifeblood_crystal": {
+    "textures": "lifeblood_crystal",
+    "sound": "stone"
+  },
+  "forgotten:smithing_stone_ore": {
+    "textures": "smithing_stone_ore",
+    "sound": "stone"
+  },
+  "forgotten:glintstone_ore": {
+    "textures": "glintstone_ore",
+    "sound": "stone"
+  },
+  "forgotten:runic_bricks": {
+    "textures": "runic_bricks",
+    "sound": "stone"
+  },
+  "forgotten:frost_crystal": {
+    "textures": "frost_crystal",
+    "sound": "stone"
   }
 }
