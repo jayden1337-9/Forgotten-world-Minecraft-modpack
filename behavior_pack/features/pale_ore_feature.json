@@ -1,0 +1,18 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:ore_feature": {
+    "description": {
+      "identifier": "forgotten:pale_ore_feature"
+    },
+    "count": 4,
+    "replace_rules": [
+      {
+        "places_block": "forgotten:pale_ore",
+        "may_replace": [
+          "minecraft:stone",
+          "minecraft:deepslate"
+        ]
+      }
+    ]
+  }
+}
