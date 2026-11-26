@@ -10,7 +10,7 @@
         "default": "textures/entity/crystal_golem"
       },
       "geometry": {
-        "default": "geometry.forgotten.crystal_golem"
+        "default": "geometry.forgotten.boss_knight"
       },
       "render_controllers": [
         "controller.render.default"
