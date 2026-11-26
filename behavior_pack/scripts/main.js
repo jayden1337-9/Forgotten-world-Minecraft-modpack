@@ -267,19 +267,126 @@ async function openAbyssWayfinder(player){
 world.afterEvents.playerInteractWithEntity.subscribe(({player,target})=>{
  if(target.typeId==="forgotten:guild_guide")openAbyssWayfinder(player);
 });
-world.beforeEvents.chatSend.subscribe(event=>{
- if(event.message.trim()!==ABYSS_PHRASE)return;
- event.cancel=true;
- const player=event.sender;
- system.run(()=>{
-  try{
-   const dim=world.getDimension(ABYSS_DIMENSION);
-   buildAbyssRegion(dim,ABYSS_REGIONS[0]);
-   player.teleport({x:0.5,y:66,z:0.5},{dimension:dim});
-   player.sendMessage("§5[The Forgotten World] §dThe Forgotten Abyss has opened. Find the Guild Guide.");
-  }catch(error){
-   player.sendMessage("§c[The Forgotten World] The portal could not open. Check pack activation and custom-dimension support.");
-   console.warn("[ForgottenWorld] Abyss portal error: "+error);
+
+// Abyss portal system. Build a 4x5 frame from Abyss Portal Frame blocks,
+// then place one Abyss Keystone in the lower-left interior space to activate it.
+const PORTAL_FRAME = "forgotten:abyss_portal_frame";
+const PORTAL_KEYSTONE = "forgotten:abyss_keystone";
+const PORTAL_FIELD = "forgotten:abyss_portal";
+const portalCooldown = new Map();
+
+function blockAt(dim, p) {
+  try { return dim.getBlock(p); } catch { return undefined; }
+}
+function isFrame(dim, p) {
+  const block = blockAt(dim, p);
+  return !!block && block.typeId === PORTAL_FRAME;
+}
+function portalFrameValid(dim, origin, axis) {
+  for (let u = -1; u <= 2; u++) for (let v = -1; v <= 3; v++) {
+    if (u >= 0 && u <= 1 && v >= 0 && v <= 2) continue;
+    const p = axis === "x"
+      ? { x: origin.x + u, y: origin.y + v, z: origin.z }
+      : { x: origin.x, y: origin.y + v, z: origin.z + u };
+    if (!isFrame(dim, p)) return false;
   }
- });
+  return true;
+}
+function fillPortal(dim, origin, axis) {
+  for (let u = 0; u <= 1; u++) for (let v = 0; v <= 2; v++) {
+    const p = axis === "x"
+      ? { x: origin.x + u, y: origin.y + v, z: origin.z }
+      : { x: origin.x, y: origin.y + v, z: origin.z + u };
+    const block = blockAt(dim, p);
+    if (block) block.setType(PORTAL_FIELD);
+  }
+}
+function tryActivateAbyssPortal(dim, origin) {
+  for (const axis of ["x", "z"]) {
+    if (!portalFrameValid(dim, origin, axis)) continue;
+    fillPortal(dim, origin, axis);
+    return axis;
+  }
+  return undefined;
+}
+function buildAbyssReturnPortal(dim) {
+  const origin = { x: -1, y: 65, z: 12 };
+  for (let u = -1; u <= 2; u++) for (let v = -1; v <= 3; v++) {
+    const p = { x: origin.x + u, y: origin.y + v, z: origin.z };
+    const isOpening = u >= 0 && u <= 1 && v >= 0 && v <= 2;
+    const block = blockAt(dim, p);
+    if (block) block.setType(isOpening ? PORTAL_FIELD : PORTAL_FRAME);
+  }
+}
+function returnPointFromPortal(origin, axis) {
+  return axis === "x"
+    ? { x: origin.x + 0.5, y: origin.y, z: origin.z + 2.5 }
+    : { x: origin.x + 2.5, y: origin.y, z: origin.z + 0.5 };
+}
+
+world.afterEvents.playerPlaceBlock.subscribe(({ block }) => {
+  if (!block || block.typeId !== PORTAL_KEYSTONE) return;
+  const axis = tryActivateAbyssPortal(block.dimension, block.location);
+  const nearby = world.getPlayers().find(p => p.dimension.id === block.dimension.id &&
+    Math.abs(p.location.x - block.location.x) <= 6 &&
+    Math.abs(p.location.y - block.location.y) <= 6 &&
+    Math.abs(p.location.z - block.location.z) <= 6);
+  if (nearby) nearby.sendMessage(axis
+    ? "§5[Abyss Portal] §dThe frame awakens. Step inside to travel."
+    : "§cThe Abyss Keystone needs a complete 4x5 frame of Abyss Portal Frame blocks.");
 });
+
+function transferThroughPortal(player, portalBlock) {
+  const now = system.currentTick;
+  if (now < (portalCooldown.get(player.id) ?? 0)) return;
+  portalCooldown.set(player.id, now + 80);
+
+  if (player.dimension.id === ABYSS_DIMENSION) {
+    let target = { dimension: "minecraft:overworld", x: 0.5, y: 80, z: 0.5 };
+    try {
+      const saved = player.getDynamicProperty("fw:portal_return");
+      if (typeof saved === "string") {
+        const data = JSON.parse(saved);
+        if (data && typeof data.dimension === "string" &&
+            Number.isFinite(data.x) && Number.isFinite(data.y) && Number.isFinite(data.z)) target = data;
+      }
+    } catch {}
+    try {
+      player.teleport({ x: target.x, y: target.y, z: target.z }, {
+        dimension: world.getDimension(target.dimension)
+      });
+      player.sendMessage("§7You return through the Abyss Portal.");
+    } catch (error) {
+      player.sendMessage("§cThe return portal could not find your previous location.");
+      console.warn("[ForgottenWorld] return teleport: " + error);
+    }
+    return;
+  }
+
+  const loc = portalBlock.location;
+  const axis = blockAt(player.dimension, {x:loc.x+1,y:loc.y,z:loc.z})?.typeId === PORTAL_FIELD ? "x" : "z";
+  const safe = returnPointFromPortal(loc, axis);
+  try {
+    player.setDynamicProperty("fw:portal_return", JSON.stringify({
+      dimension: player.dimension.id, x: safe.x, y: safe.y, z: safe.z
+    }));
+    const abyss = world.getDimension(ABYSS_DIMENSION);
+    buildAbyssRegion(abyss, ABYSS_REGIONS[0]);
+    buildAbyssReturnPortal(abyss);
+    player.teleport({ x: 0.5, y: 66, z: 0.5 }, { dimension: abyss });
+    player.sendMessage("§5[The Forgotten World] §dYou enter the Forgotten Abyss.");
+  } catch (error) {
+    player.sendMessage("§cThe Abyss Portal could not open. Check that the custom dimension is enabled.");
+    console.warn("[ForgottenWorld] portal teleport: " + error);
+  }
+}
+system.runInterval(() => {
+  for (const player of world.getPlayers()) {
+    const loc = player.location, dim = player.dimension;
+    const feet = blockAt(dim, { x: Math.floor(loc.x), y: Math.floor(loc.y), z: Math.floor(loc.z) });
+    const head = blockAt(dim, { x: Math.floor(loc.x), y: Math.floor(loc.y + 1), z: Math.floor(loc.z) });
+    const portal = feet?.typeId === PORTAL_FIELD ? feet : head?.typeId === PORTAL_FIELD ? head : undefined;
+    if (portal) transferThroughPortal(player, portal);
+  }
+}, 10);
+console.warn("[ForgottenWorld] Abyss portal system loaded. Phrase entrance disabled.");
