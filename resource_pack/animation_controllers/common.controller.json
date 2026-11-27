@@ -5,15 +5,111 @@
       "initial_state": "idle",
       "states": {
         "idle": {
-          "animations": ["idle"],
+          "animations": [
+            "idle"
+          ],
           "transitions": [
-            { "moving": "query.modified_move_speed > 0.01" }
+            {
+              "attacking": "query.is_attacking"
+            },
+            {
+              "moving": "query.modified_move_speed > 0.01"
+            }
           ]
         },
         "moving": {
-          "animations": ["walk"],
+          "animations": [
+            "walk"
+          ],
           "transitions": [
-            { "idle": "query.modified_move_speed <= 0.01" }
+            {
+              "attacking": "query.is_attacking"
+            },
+            {
+              "idle": "query.modified_move_speed <= 0.01"
+            }
+          ]
+        },
+        "attacking": {
+          "animations": [
+            "attack"
+          ],
+          "transitions": [
+            {
+              "moving": "query.modified_move_speed > 0.01"
+            },
+            {
+              "idle": "query.modified_move_speed <= 0.01"
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.forgotten.wolf": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "animations": [
+            "idle"
+          ],
+          "transitions": [
+            {
+              "attacking": "query.is_attacking"
+            },
+            {
+              "moving": "query.modified_move_speed > 0.01"
+            }
+          ]
+        },
+        "moving": {
+          "animations": [
+            "wolf_walk"
+          ],
+          "transitions": [
+            {
+              "attacking": "query.is_attacking"
+            },
+            {
+              "idle": "query.modified_move_speed <= 0.01"
+            }
+          ]
+        },
+        "attacking": {
+          "animations": [
+            "attack"
+          ],
+          "transitions": [
+            {
+              "moving": "query.modified_move_speed > 0.01"
+            },
+            {
+              "idle": "query.modified_move_speed <= 0.01"
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.forgotten.slime": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "animations": [
+            "slime_idle"
+          ],
+          "transitions": [
+            {
+              "moving": "query.modified_move_speed > 0.01"
+            }
+          ]
+        },
+        "moving": {
+          "animations": [
+            "slime_walk"
+          ],
+          "transitions": [
+            {
+              "idle": "query.modified_move_speed <= 0.01"
+            }
           ]
         }
       }
