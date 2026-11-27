@@ -15,17 +15,58 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v4
-      - name: Validate JSON and required files
+      - name: Validate JSON, manifests, assets and animation links
         run: |
           python - <<'PY'
           import json, pathlib
           root = pathlib.Path(".")
+          bp = root / "behavior_pack"
+          rp = root / "resource_pack"
           files = list(root.glob("behavior_pack/**/*.json")) + list(root.glob("resource_pack/**/*.json")) + list(root.glob("config/**/*.json"))
-          for path in files:
-              json.loads(path.read_text())
+          data = {p: json.loads(p.read_text()) for p in files}
           for path in ["behavior_pack/manifest.json", "resource_pack/manifest.json", "behavior_pack/scripts/main.js"]:
               assert (root / path).is_file(), f"Missing required file: {path}"
-          print(f"Validated {len(files)} JSON files")
+
+          bp_manifest = json.loads((bp / "manifest.json").read_text())
+          rp_manifest = json.loads((rp / "manifest.json").read_text())
+          rp_uuid = rp_manifest["header"]["uuid"]
+          assert any(d.get("uuid") == rp_uuid and d.get("version") == rp_manifest["header"]["version"] for d in bp_manifest.get("dependencies", [])), "Behavior pack resource-pack dependency does not match the resource manifest"
+
+          animation_ids = set()
+          for p in (rp / "animations").glob("*.json"):
+              animation_ids.update(json.loads(p.read_text()).get("animations", {}).keys())
+          controller_ids = set()
+          controllers = {}
+          for p in (rp / "animation_controllers").glob("*.json"):
+              obj = json.loads(p.read_text()).get("animation_controllers", {})
+              controller_ids.update(obj.keys())
+              controllers.update(obj)
+
+          geometry_ids = set()
+          for p in (rp / "models/entity").glob("*.geo.json"):
+              for geo in json.loads(p.read_text()).get("minecraft:geometry", []):
+                  geometry_ids.add(geo["description"]["identifier"])
+
+          aliases = set()
+          client_entities = list((rp / "entity").glob("*.entity.json"))
+          for p in client_entities:
+              desc = json.loads(p.read_text())["minecraft:client_entity"]["description"]
+              assert desc["geometry"]["default"] in geometry_ids, f"{p}: missing geometry {desc['geometry']['default']}"
+              texture = desc["textures"]["default"]
+              texture_path = rp / (texture + ".png")
+              assert texture_path.is_file(), f"{p}: missing texture {texture_path}"
+              for alias, target in desc.get("animations", {}).items():
+                  aliases.add(alias)
+                  assert target in animation_ids or target in controller_ids, f"{p}: unresolved animation/controller {target}"
+              for alias in desc.get("scripts", {}).get("animate", []):
+                  assert alias in desc.get("animations", {}), f"{p}: animate script refers to missing alias {alias}"
+
+          for controller_id, controller in controllers.items():
+              for state_name, state in controller.get("states", {}).items():
+                  for alias in state.get("animations", []):
+                      assert alias in aliases, f"{controller_id}/{state_name}: unresolved animation alias {alias}"
+
+          print(f"Validated {len(files)} JSON files, {len(client_entities)} client entities, {len(animation_ids)} animations and {len(controller_ids)} controllers")
           PY
       - name: Check JavaScript syntax
         run: node --check behavior_pack/scripts/main.js
@@ -36,6 +77,7 @@ jobs:
           cd resource_pack && zip -qr ../dist/addon/ForgottenWorld_RP.mcpack . && cd ..
           cd dist/addon && zip -qr ../ForgottenWorld.mcaddon . && cd ../..
           cp README.md dist/README.txt
+          cp tools/install-vmoscloud.sh dist/install-vmoscloud.sh
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
