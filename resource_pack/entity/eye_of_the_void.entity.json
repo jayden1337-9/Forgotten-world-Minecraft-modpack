@@ -14,7 +14,16 @@
       },
       "render_controllers": [
         "controller.render.default"
-      ]
+      ],
+      "animations": {
+        "idle": "animation.forgotten.common.idle",
+        "movement": "controller.animation.forgotten.common"
+      },
+      "scripts": {
+        "animate": [
+          "movement"
+        ]
+      }
     }
   }
 }
