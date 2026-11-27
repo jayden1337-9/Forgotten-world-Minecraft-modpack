@@ -16,8 +16,9 @@
         "controller.render.default"
       ],
       "animations": {
-        "idle": "animation.forgotten.common.idle",
-        "movement": "controller.animation.forgotten.common"
+        "slime_idle": "animation.forgotten.slime.idle",
+        "slime_walk": "animation.forgotten.slime.walk",
+        "movement": "controller.animation.forgotten.slime"
       },
       "scripts": {
         "animate": [
