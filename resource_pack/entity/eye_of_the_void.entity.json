@@ -16,12 +16,11 @@
         "controller.render.default"
       ],
       "animations": {
-        "idle": "animation.forgotten.common.idle",
-        "movement": "controller.animation.forgotten.common"
+        "spin": "animation.forgotten.eye.spin"
       },
       "scripts": {
         "animate": [
-          "movement"
+          "spin"
         ]
       }
     }
