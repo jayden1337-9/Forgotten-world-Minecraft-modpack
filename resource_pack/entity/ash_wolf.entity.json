@@ -17,7 +17,9 @@
       ],
       "animations": {
         "idle": "animation.forgotten.common.idle",
-        "movement": "controller.animation.forgotten.common"
+        "wolf_walk": "animation.forgotten.wolf.walk",
+        "attack": "animation.forgotten.common.attack",
+        "movement": "controller.animation.forgotten.wolf"
       },
       "scripts": {
         "animate": [
