@@ -16,9 +16,8 @@
         "controller.render.default"
       ],
       "animations": {
-        "idle": "animation.forgotten.abyss_watcher.idle",
-        "walk": "animation.forgotten.abyss_watcher.walk",
-        "movement": "controller.animation.forgotten.abyss_watcher"
+        "idle": "animation.forgotten.common.idle",
+        "movement": "controller.animation.forgotten.common"
       },
       "scripts": {
         "animate": [
