@@ -1,0 +1,37 @@
+name: Bedrock Add-on Build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Validate JSON and asset references
+        run: python tools/validate_assets.py
+      - name: Check JavaScript syntax
+        run: node --check behavior_pack/scripts/main.js
+      - name: Check installer syntax
+        run: bash -n tools/install-vmoscloud.sh
+      - name: Package add-on
+        run: |
+          mkdir -p dist/addon
+          (cd behavior_pack && zip -qr ../dist/addon/ForgottenWorld_BP.mcpack .)
+          (cd resource_pack && zip -qr ../dist/addon/ForgottenWorld_RP.mcpack .)
+          (cd dist/addon && zip -qr ../ForgottenWorld.mcaddon .)
+          cp README.md dist/README.txt
+          cp tools/install-vmoscloud.sh dist/install-vmoscloud.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ForgottenWorld-${{ github.sha }}
+          path: dist/*
+          if-no-files-found: error
